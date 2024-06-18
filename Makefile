@@ -6,17 +6,17 @@
 #    By: madamou <madamou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 12:57:50 by madamou           #+#    #+#              #
-#    Updated: 2024/06/17 13:01:39 by madamou          ###   ########.fr        #
+#    Updated: 2024/06/18 20:54:14 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-C_FLAGS = -Wall -Wextra -Werror
+C_FLAGS = -Wall -Wextra -Werror -g3
 
 SRCS_DIR = srcs/
 
-SRCS = main.c
+SRCS = main.c parse_map.c
 
 OBJS_DIR = .objets/
 
@@ -46,7 +46,7 @@ $(NAME) : $(OBJS)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	$(DIR_DUP)
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) $(C_FLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 clean : 
 	make clean -C ./libft 

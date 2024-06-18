@@ -26,4 +26,6 @@ typedef struct s_mlx
 	void  *window;
 }t_mlx;
 
+int ft_parse_map(char *map);
+
 #endif // !SO_LONG_H
