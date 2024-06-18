@@ -11,32 +11,45 @@
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-#include <stdio.h>
 
-void ft_destroy_mlx(void *mlx_open)
+void ft_destroy_mlx(void *mlx)
 {
-	mlx_destroy_display(mlx_open);
-	free(mlx_open);
+	mlx_destroy_display(mlx);
+	free(mlx);
+}
+
+int test(int keycode, t_mlx *mlx)
+{
+	if (keycode == 65307)
+	{
+		printf("You pressed on escape key. bye\n");
+		mlx_destroy_window(mlx->init, mlx->window);
+		ft_destroy_mlx(mlx->init);
+		exit(EXIT_SUCCESS);
+	}
+	printf("%s = %d\n", "touche", keycode);
+	return (0);
 }
 
 int main(int argc, char **argv)
 {
-	void *mlx_open;
-	void *mlx_window;
+	t_mlx mlx;
 
 	(void)argv;
 	(void)argc;
-	mlx_open = mlx_init();
-	if (!mlx_open)
+	mlx.init = mlx_init();
+	if (!mlx.init)
 		return (perror("Error when init mlx\n"), 1);
-	mlx_window = mlx_new_window(mlx_open, WIDTH, HEIGHT, "New window");
-	if (!mlx_window)
+	mlx.window = mlx_new_window(mlx.init, WIDTH, HEIGHT, "New window");
+	if (!mlx.window)
 	{
 		perror("Error when creating display\n");
-		return (ft_destroy_mlx(mlx_open), 1);
+		return (ft_destroy_mlx(mlx.init), 1);
 	}
-	mlx_loop(mlx_open);
-	mlx_destroy_window(mlx_open, mlx_window);
-	ft_destroy_mlx(mlx_open);
+	mlx_pixel_put(mlx.init, mlx.window, 250, 250, 0X00FFFFFF);
+	mlx_key_hook(mlx.window, test, &mlx);
+	mlx_loop(mlx.init);
+	mlx_destroy_window(mlx.init, mlx.window);
+	ft_destroy_mlx(mlx.init);
 	return (0);
 }

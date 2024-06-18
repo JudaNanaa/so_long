@@ -17,7 +17,13 @@
 #include "../minilibx-linux/mlx.h"
 #include <stdio.h>
 
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 1900
+# define HEIGHT 1080
+
+typedef struct s_mlx
+{
+	void  *init;
+	void  *window;
+}t_mlx;
 
 #endif // !SO_LONG_H
