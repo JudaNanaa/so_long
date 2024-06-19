@@ -1,0 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/18 19:09:03 by madamou           #+#    #+#             */
+/*   Updated: 2024/06/19 21:17:05 by madamou          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/so_long.h"
+
+char	*ft_read_map(int fd)
+{
+	char	*buff;
+	char	*line;
+
+	buff = NULL;
+	line = get_next_line(fd);
+	while (line)
+	{
+		buff = ft_realloc(buff, ft_strlen(line));
+		if (!buff)
+			return (ft_printf("Error when realloc for parsing\n"), NULL);
+		buff = ft_strcat(buff, line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (buff);
+}
+
+int	ft_check_map(char *buff)
+{
+	int	cpt;
+
+	cpt = 0;
+	cpt += ft_check_if_not_duplicate(buff, 'P', "Player");
+	cpt += ft_check_if_not_duplicate(buff, 'E', "Exit");
+	cpt += ft_check_if_collectible(buff);
+	cpt += ft_check_if_rectangle(buff);
+	cpt += ft_check_close_by_wall(buff);
+	return (cpt);
+}
+
+int	ft_open_map(char *map)
+{
+	int		fd;
+	char	*buff;
+
+	fd = open(map, O_RDONLY);
+	if (fd == -1)
+		return (ft_printf("%s : ", map), perror(""), -1);
+	buff = ft_read_map(fd);
+	close(fd);
+	if (!buff)
+		return (-1);
+	if (ft_check_map(buff) < 0)
+		return (free(buff), -1);
+	return (free(buff), 0);
+}
+
+int	ft_parse_map(char *map)
+{
+	if (ft_strlen(map) <= 4)
+		return (ft_printf("Error \nFile don't end by .ber\n"), -1);
+	if (ft_strcmp(&map[ft_strlen(map) - 4], ".ber") != -1)
+		return (ft_printf("Error \nFile don't end by .ber\n"), -1);
+	return (ft_open_map(map));
+}

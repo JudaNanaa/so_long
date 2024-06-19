@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: madamou <madamou@student.42.fr>            +#+  +:+       +#+         #
+#    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 12:57:50 by madamou           #+#    #+#              #
-#    Updated: 2024/06/18 20:54:14 by madamou          ###   ########.fr        #
+#    Updated: 2024/06/19 21:16:37 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ C_FLAGS = -Wall -Wextra -Werror -g3
 
 SRCS_DIR = srcs/
 
-SRCS = main.c parse_map.c
+PARSING = $(addprefix parsing/, parse_map.c parse_map_utils.c) 
+
+SRCS = main.c  mlx_functions.c $(PARSING)
 
 OBJS_DIR = .objets/
 

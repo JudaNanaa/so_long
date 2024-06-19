@@ -3,24 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:06:24 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/18 19:41:49 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/19 21:09:51 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include <stdio.h>
 
-void ft_destroy_mlx(void *mlx)
-{
-	mlx_destroy_display(mlx);
-	free(mlx);
-}
 
-int ft_exit_cross(int keycode, int x, int y, t_mlx *mlx)
-{ 
+
+int	ft_exit_cross(int keycode, int x, int y, t_mlx *mlx)
+{
 	if (keycode == 65307)
 	{
 		printf("You pressed on escape key. bye\n");
@@ -32,7 +28,7 @@ int ft_exit_cross(int keycode, int x, int y, t_mlx *mlx)
 	printf("%s = %d\n", "touche", keycode);
 	return (0);
 }
-int ft_exit_escape(int keycode, t_mlx *mlx)
+int	ft_exit_escape(int keycode, t_mlx *mlx)
 {
 	if (keycode == 65307)
 	{
@@ -41,18 +37,18 @@ int ft_exit_escape(int keycode, t_mlx *mlx)
 		ft_destroy_mlx(mlx->init);
 		exit(EXIT_SUCCESS);
 	}
-	mlx_string_put(mlx->init, mlx->window, WIDTH/2, HEIGHT/2, 0X00FFFFFF, "test ?");
+	mlx_string_put(mlx->init, mlx->window, WIDTH / 2, HEIGHT / 2, 0X00FFFFFF,
+		"test ?");
 	printf("%s = %d\n", "touche", keycode);
 	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	// t_mlx mlx;
-
 	if (argc != 2)
 		return (ft_printf("Pas le bon nombre d'arguments\n"), 1);
-	if (ft_parse_map(argv[1]) == 0)
+	if (ft_parse_map(argv[1]) < 0)
 		return (1);
 	// mlx.init = mlx_init();
 	// if (!mlx.init)
