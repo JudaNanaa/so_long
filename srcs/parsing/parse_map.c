@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:09:03 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/19 21:17:05 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/21 00:08:24 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ char	*ft_read_map(int fd)
 	{
 		buff = ft_realloc(buff, ft_strlen(line));
 		if (!buff)
+		{
+			free(line);
 			return (ft_printf("Error when realloc for parsing\n"), NULL);
+		}
 		buff = ft_strcat(buff, line);
 		free(line);
 		line = get_next_line(fd);

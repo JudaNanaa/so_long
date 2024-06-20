@@ -52,19 +52,20 @@ int	main(int argc, char **argv)
 	mlx.map = ft_parse_map(argv[1]);
 	if (!mlx.map)
 		return (1);
-	mlx.init = mlx_init();
-	if (!mlx.init)
-		return (perror("Error when init mlx\n"), 1);
-	mlx.window = mlx_new_window(mlx.init, WIDTH, HEIGHT, "New window");
-	if (!mlx.window)
-	{
-		perror("Error when creating display\n");
-		return (ft_destroy_mlx(mlx.init), 1);
-	}
-	mlx_pixel_put(mlx.init, mlx.window, 250, 250, 0X00FFFFFF);
-	mlx_key_hook(mlx.window, ft_exit_escape, &mlx);
-	mlx_mouse_hook(mlx.window, ft_exit_cross, &mlx);
-	mlx_loop(mlx.init);
-	ft_destroy_mlx(mlx.init);
+	ft_free_split(mlx.map);
+	// mlx.init = mlx_init();
+	// if (!mlx.init)
+	// 	return (perror("Error when init mlx\n"), 1);
+	// mlx.window = mlx_new_window(mlx.init, WIDTH, HEIGHT, "So_long");
+	// if (!mlx.window)
+	// {
+	// 	perror("Error when creating display\n");
+	// 	return (ft_destroy_mlx(mlx.init), 1);
+	// }
+	// mlx_pixel_put(mlx.init, mlx.window, WIDTH / 2, HEIGHT / 2, 0X00FFFFFF);
+	// mlx_key_hook(mlx.window, ft_exit_escape, &mlx);
+	// mlx_mouse_hook(mlx.window, ft_exit_cross, &mlx);
+	// mlx_loop(mlx.init);
+	// ft_destroy_mlx(mlx.init);
 	return (0);
 }
