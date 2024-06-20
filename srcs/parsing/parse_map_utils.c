@@ -76,7 +76,7 @@ int	ft_check_if_rectangle(char *buff)
 		if (buff[i])
 			i++;
 	}
-	return (-1);
+	return (0);
 }
 
 int	ft_check_close_by_wall2(char *buff)

@@ -16,7 +16,7 @@ C_FLAGS = -Wall -Wextra -Werror -g3
 
 SRCS_DIR = srcs/
 
-PARSING = $(addprefix parsing/, parse_map.c parse_map_utils.c) 
+PARSING = $(addprefix parsing/, parse_map.c parse_map_utils.c parse_map_utils2.c) 
 
 SRCS = main.c  mlx_functions.c $(PARSING)
 

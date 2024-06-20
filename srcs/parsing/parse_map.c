@@ -41,31 +41,33 @@ int	ft_check_map(char *buff)
 	cpt += ft_check_if_collectible(buff);
 	cpt += ft_check_if_rectangle(buff);
 	cpt += ft_check_close_by_wall(buff);
+	cpt += ft_check_if_playable(buff);
 	return (cpt);
 }
 
-int	ft_open_map(char *map)
+char **ft_open_map(char *map)
 {
 	int		fd;
 	char	*buff;
+	char	**split;
 
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		return (ft_printf("%s : ", map), perror(""), -1);
+		return (ft_printf("%s : ", map), perror(""), NULL);
 	buff = ft_read_map(fd);
 	close(fd);
 	if (!buff)
-		return (-1);
+		return (NULL);
 	if (ft_check_map(buff) < 0)
-		return (free(buff), -1);
-	return (free(buff), 0);
+		return (free(buff), NULL);
+	return (split = ft_split(buff, "\n"), free(buff), split);
 }
 
-int	ft_parse_map(char *map)
+char	**ft_parse_map(char *map)
 {
 	if (ft_strlen(map) <= 4)
-		return (ft_printf("Error \nFile don't end by .ber\n"), -1);
-	if (ft_strcmp(&map[ft_strlen(map) - 4], ".ber") != -1)
-		return (ft_printf("Error \nFile don't end by .ber\n"), -1);
+		return (ft_printf("Error \nFile don't end by .ber\n"), NULL);
+	if (ft_strcmp(&map[ft_strlen(map) - 4], ".ber") != 0)
+		return (ft_printf("Error \nFile don't end by .ber\n"), NULL);
 	return (ft_open_map(map));
 }

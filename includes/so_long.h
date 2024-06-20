@@ -24,15 +24,18 @@ typedef struct s_mlx
 {
 	void  *init;
 	void  *window;
+	char  **map;
 }t_mlx;
 
 int	ft_check_if_collectible(char *map);
-int ft_parse_map(char *map);
 int	ft_check_if_not_duplicate(char *map, char c, char *str);
 int	ft_check_if_rectangle(char *buff);
 int	ft_check_close_by_wall2(char *buff);
 int	ft_check_close_by_wall(char *buff);
+int ft_check_if_playable(char *buff);
 
 void	ft_destroy_mlx(void *mlx);
+
+char **ft_parse_map(char *map);
 
 #endif // !SO_LONG_H
