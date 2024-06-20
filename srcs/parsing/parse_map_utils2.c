@@ -10,13 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../includes/so_long.h"
 #include <stdio.h>
 
-int ft_change_to_P(char **map, int x, int y)
+int	ft_change_to_p(char **map, int x, int y)
 {
-	int cpt;
+	int	cpt;
 
 	cpt = 0;
 	if (map[y][x - 1] == '0' || map[y][x - 1] == 'C' || map[y][x - 1] == 'E')
@@ -42,11 +41,11 @@ int ft_change_to_P(char **map, int x, int y)
 	return (cpt);
 }
 
-char  **ft_blob_the_map(char **map)
+char	**ft_blob_the_map(char **map)
 {
-	int x;
-	int y;
-	int cpt;
+	int	x;
+	int	y;
+	int	cpt;
 
 	while (1)
 	{
@@ -58,7 +57,7 @@ char  **ft_blob_the_map(char **map)
 			while (map[y][x])
 			{
 				if (map[y][x] == 'P')
-					cpt += ft_change_to_P(map, x, y);
+					cpt += ft_change_to_p(map, x, y);
 				x++;
 			}
 			y++;
@@ -69,10 +68,10 @@ char  **ft_blob_the_map(char **map)
 	return (NULL);
 }
 
-int ft_check_if_all_good(char **map)
+int	ft_check_if_all_good(char **map)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (map[y])
@@ -89,11 +88,11 @@ int ft_check_if_all_good(char **map)
 	return (0);
 }
 
-int ft_check_if_playable(char *buff)
+int	ft_check_if_playable(char *buff)
 {
-	int i;
-	int j;
-	char **map;
+	int		i;
+	int		j;
+	char	**map;
 
 	i = 0;
 	j = 0;
@@ -109,4 +108,3 @@ int ft_check_if_playable(char *buff)
 	ft_free_split(map);
 	return (0);
 }
-

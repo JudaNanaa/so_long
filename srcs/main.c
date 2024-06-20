@@ -13,8 +13,6 @@
 #include "../includes/so_long.h"
 #include <stdio.h>
 
-
-
 int	ft_exit_cross(int keycode, int x, int y, t_mlx *mlx)
 {
 	if (keycode == 65307)
@@ -28,6 +26,7 @@ int	ft_exit_cross(int keycode, int x, int y, t_mlx *mlx)
 	printf("%s = %d\n", "touche", keycode);
 	return (0);
 }
+
 int	ft_exit_escape(int keycode, t_mlx *mlx)
 {
 	if (keycode == 65307)
@@ -38,15 +37,15 @@ int	ft_exit_escape(int keycode, t_mlx *mlx)
 		ft_free_split(mlx->map);
 		exit(EXIT_SUCCESS);
 	}
-	mlx_string_put(mlx->init, mlx->window, WIDTH / 2, HEIGHT / 2, 0X00FFFFFF,
-		"test ?");
+	mlx_string_put(mlx->init, mlx->window, WIDTH / 2, HEIGHT / 2,
+		0X00FFFFFF, "test ?");
 	printf("%s = %d\n", "touche", keycode);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_mlx mlx;
+	t_mlx	mlx;
 
 	if (argc != 2)
 		return (ft_printf("Pas le bon nombre d'arguments\n"), 1);
@@ -64,7 +63,6 @@ int	main(int argc, char **argv)
 	}
 	mlx_pixel_put(mlx.init, mlx.window, 250, 250, 0X00FFFFFF);
 	mlx_key_hook(mlx.window, ft_exit_escape, &mlx);
-
 	mlx_mouse_hook(mlx.window, ft_exit_cross, &mlx);
 	mlx_loop(mlx.init);
 	ft_destroy_mlx(mlx.init);

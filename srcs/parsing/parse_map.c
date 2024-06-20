@@ -45,7 +45,7 @@ int	ft_check_map(char *buff)
 	return (cpt);
 }
 
-char **ft_open_map(char *map)
+char	**ft_open_map(char *map)
 {
 	int		fd;
 	char	*buff;
