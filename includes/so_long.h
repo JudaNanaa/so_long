@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:06:56 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/21 17:03:28 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/21 20:29:49 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_mlx
 	char	**map;
 	int		width;
 	int		height;
+	int		exit_x;
+	int		exit_y;
 	t_img	img;
 }			t_mlx;
 
@@ -50,15 +52,19 @@ int			ft_check_if_playable(char *buff);
 int			ft_put_pixel(t_mlx *mlx);
 int			ft_so_long(t_mlx *mlx, char **map);
 int			ft_exit_escape(int keycode, t_mlx *mlx);
-int			ft_exit_cross(int keycode, int x, int y, t_mlx *mlx);
+int			ft_exit_cross(t_mlx *mlx);
 int			ft_put_backgroud(t_mlx *mlx);
 int			ft_put_wall(t_mlx *mlx);
 int			ft_put_player(t_mlx *mlx);
 int			ft_put_collectible(t_mlx *mlx);
 int			ft_put_exit(t_mlx *mlx);
+int			ft_nb_collectible(t_mlx *mlx);
+int			ft_is_doable(t_mlx *mlx, int keycode);
 
 void		ft_destroy_mlx(t_mlx *mlx);
 void		ft_mlx_width_height_init(t_mlx *mlx);
+void		ft_find_position_exit(t_mlx *mlx, int *x, int *y);
+void		ft_parcourt_map(t_mlx *mlx, int x, int y, void *img);
 
 char		**ft_parse_map(char *map);
 

@@ -6,7 +6,7 @@
 #    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 12:57:50 by madamou           #+#    #+#              #
-#    Updated: 2024/06/21 16:19:34 by madamou          ###   ########.fr        #
+#    Updated: 2024/06/21 20:29:21 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS_DIR = srcs/
 
 PARSING = $(addprefix parsing/, parse_map.c parse_map_utils.c parse_map_utils2.c) 
 
-MLX = $(addprefix mlx/, so_long.c  mlx_functions.c print_image.c)
+MLX = $(addprefix mlx/, so_long.c  mlx_functions.c print_image.c event.c)
 
 SRCS = main.c  $(PARSING) $(MLX)
 

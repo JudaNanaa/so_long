@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 21:06:10 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/21 17:13:29 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/21 20:39:01 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,28 @@ void	ft_mlx_width_height_init(t_mlx *mlx)
 	mlx->height = y * 64;
 }
 
+int	ft_nb_collectible(t_mlx *mlx)
+{
+	int	x;
+	int	y;
+	int	cpt;
+
+	cpt = 0;
+	y = 0;
+	while (mlx->map[y])
+	{
+		x = 0;
+		while (mlx->map[y][x])
+		{
+			if (mlx->map[y][x] == 'C')
+				cpt++;
+			x++;
+		}
+		y++;
+	}
+	return (cpt);
+}
+
 int	ft_put_pixel(t_mlx *mlx)
 {
 	if (ft_put_backgroud(mlx) == -1)
@@ -59,29 +81,25 @@ int	ft_put_pixel(t_mlx *mlx)
 		return (-1);
 	if (ft_put_collectible(mlx) == -1)
 		return (-1);
-	if (ft_put_exit(mlx) == -1)
-		return (-1);
 	return (0);
 }
 
-// void  ft_put_pixel(t_mlx *mlx)
-// {
-// // 	t_mlx img;
-// //
-// // 	mlx->img.mlx_img = mlx_new_image(mlx->init, WIDTH, HEIGHT);
-//
-// 	int x;
-// 	int y;
-//
-// 	y = 0;
-// 	while (y < HEIGHT)
-// 	{
-// 		x = 0;
-// 		while (x < WIDTH)
-// 		{
-// 			mlx_pixel_put(mlx->init, mlx->window, x, y, 0X99BFCF);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
+void	ft_parcourt_map(t_mlx *mlx, int x, int y, void *img)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (mlx->map[i])
+	{
+		j = 0;
+		while (mlx->map[i][j])
+		{
+			if (mlx->map[i][j] == '1')
+				mlx_put_image_to_window(mlx->init, mlx->window, img, j * x,
+					i * y);
+			j++;
+		}
+		i++;
+	}
+}

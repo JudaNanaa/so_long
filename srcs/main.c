@@ -6,33 +6,75 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:06:24 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/21 11:45:02 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/21 20:17:12 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include <stdio.h>
 
-int	ft_exit_cross(int keycode, int x, int y, t_mlx *mlx)
+void	ft_find_position_player(t_mlx *mlx, int *x, int *y)
 {
-	if (keycode == 802)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (mlx->map[i])
 	{
-		printf("You pressed on escape key. bye\n");
-		ft_destroy_mlx(mlx);
+		j = 0;
+		while (mlx->map[i][j])
+		{
+			if (mlx->map[i][j] == 'P')
+			{
+				*x = j;
+				*y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
 	}
-	printf("x = %d et y = %d\n", x, y);
-	printf("%s = %d\n", "touche", keycode);
-	return (0);
 }
 
-int	ft_exit_escape(int keycode, t_mlx *mlx)
+void	ft_find_position_exit(t_mlx *mlx, int *x, int *y)
 {
-	if (keycode == 65307)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (mlx->map[i])
 	{
-		printf("You pressed on escape key. bye\n");
-		ft_destroy_mlx(mlx);
+		j = 0;
+		while (mlx->map[i][j])
+		{
+			if (mlx->map[i][j] == 'E')
+			{
+				*x = j;
+				*y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
 	}
-	printf("%s = %d\n", "touche", keycode);
+}
+
+int	ft_is_doable(t_mlx *mlx, int keycode)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	ft_find_position_player(mlx, &x, &y);
+	if (keycode == 'w' && mlx->map[y - 1][x] != '1')
+		return (mlx->map[y - 1][x] = 'P', mlx->map[y][x] = '0', 1);
+	if (keycode == 's' && mlx->map[y + 1][x] != '1')
+		return (mlx->map[y + 1][x] = 'P', mlx->map[y][x] = '0', 1);
+	if (keycode == 'a' && mlx->map[y][x - 1] != '1')
+		return (mlx->map[y][x - 1] = 'P', mlx->map[y][x] = '0', 1);
+	if (keycode == 'd' && mlx->map[y][x + 1] != '1')
+		return (mlx->map[y][x + 1] = 'P', mlx->map[y][x] = '0', 1);
 	return (0);
 }
 

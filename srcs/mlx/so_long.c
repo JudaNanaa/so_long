@@ -14,6 +14,8 @@
 
 void	ft_initalize_mlx(t_mlx *mlx, char **map)
 {
+	mlx->exit_x = 0;
+	mlx->exit_y = 0;
 	mlx->map = map;
 	ft_mlx_width_height_init(mlx);
 	mlx->wall = NULL;
@@ -22,6 +24,7 @@ void	ft_initalize_mlx(t_mlx *mlx, char **map)
 	mlx->player = NULL;
 	mlx->coins = NULL;
 	mlx->exit = NULL;
+	ft_find_position_exit(mlx, &mlx->exit_x, &mlx->exit_y);
 }
 
 int	ft_so_long(t_mlx *mlx, char **map)
@@ -39,6 +42,7 @@ int	ft_so_long(t_mlx *mlx, char **map)
 	if (ft_put_pixel(mlx) == -1)
 		ft_destroy_mlx(mlx);
 	mlx_key_hook(mlx->window, ft_exit_escape, mlx);
+	mlx_hook(mlx->window, 17, 0L, ft_exit_cross, mlx);
 	mlx_mouse_hook(mlx->window, ft_exit_cross, mlx);
 	mlx_loop(mlx->init);
 	ft_destroy_mlx(mlx->init);
