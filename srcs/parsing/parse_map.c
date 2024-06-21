@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
+#include <stdio.h>
 
 char	*ft_read_map(int fd)
 {
@@ -58,7 +59,8 @@ char	**ft_open_map(char *map)
 	if (fd == -1)
 		return (ft_printf("%s : ", map), perror(""), NULL);
 	buff = ft_read_map(fd);
-	close(fd);
+	if (close(fd) == -1)
+		return (free(buff), perror(""), NULL);
 	if (!buff)
 		return (NULL);
 	if (ft_check_map(buff) < 0)
