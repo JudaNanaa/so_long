@@ -24,7 +24,8 @@ void	ft_find_position_player(t_mlx *mlx, int *x, int *y)
 		j = 0;
 		while (mlx->map[i][j])
 		{
-			if (mlx->map[i][j] == 'P')
+			if (mlx->map[i][j] == 'P' || mlx->map[i][j] == 'R'
+				|| mlx->map[i][j] == 'L' || mlx->map[i][j] == 'B')
 			{
 				*x = j;
 				*y = i;
@@ -68,13 +69,13 @@ int	ft_is_doable(t_mlx *mlx, int keycode)
 	y = 0;
 	ft_find_position_player(mlx, &x, &y);
 	if (keycode == 'w' && mlx->map[y - 1][x] != '1')
-		return (mlx->map[y - 1][x] = 'P', mlx->map[y][x] = '0', 1);
+		return (mlx->map[y - 1][x] = 'B', mlx->map[y][x] = '0', 1);
 	if (keycode == 's' && mlx->map[y + 1][x] != '1')
 		return (mlx->map[y + 1][x] = 'P', mlx->map[y][x] = '0', 1);
 	if (keycode == 'a' && mlx->map[y][x - 1] != '1')
-		return (mlx->map[y][x - 1] = 'P', mlx->map[y][x] = '0', 1);
+		return (mlx->map[y][x - 1] = 'L', mlx->map[y][x] = '0', 1);
 	if (keycode == 'd' && mlx->map[y][x + 1] != '1')
-		return (mlx->map[y][x + 1] = 'P', mlx->map[y][x] = '0', 1);
+		return (mlx->map[y][x + 1] = 'R', mlx->map[y][x] = '0', 1);
 	return (0);
 }
 

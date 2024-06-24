@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
+#include <stdio.h>
 
 void	ft_destroy_mlx(t_mlx *mlx)
 {
@@ -20,8 +21,14 @@ void	ft_destroy_mlx(t_mlx *mlx)
 		mlx_destroy_image(mlx->init, mlx->back);
 	if (mlx->wall)
 		mlx_destroy_image(mlx->init, mlx->wall);
-	if (mlx->player)
-		mlx_destroy_image(mlx->init, mlx->player);
+	if (mlx->player_f)
+		mlx_destroy_image(mlx->init, mlx->player_f);
+	if (mlx->player_r)
+		mlx_destroy_image(mlx->init, mlx->player_r);
+	if (mlx->player_l)
+		mlx_destroy_image(mlx->init, mlx->player_l);
+	if (mlx->player_b)
+		mlx_destroy_image(mlx->init, mlx->player_b);
 	if (mlx->coins)
 		mlx_destroy_image(mlx->init, mlx->coins);
 	if (mlx->exit)

@@ -17,6 +17,16 @@
 # include "../minilibx-linux/mlx.h"
 # include <stdio.h>
 
+# define IMAGE 64
+# define IMG_RIGHT "images/perso_right.xpm" 
+# define IMG_LEFT "images/perso_left.xpm" 
+# define IMG_BACK "images/perso_back.xpm" 
+# define IMG_FRONT "images/perso_front.xpm"
+# define IMG_FLOOR "images/back.xpm"
+# define IMG_WALL "images/bush1.xpm"
+# define IMG_COINS "images/coin1.xpm"
+# define IMG_EXIT "images/exit.xpm"
+
 typedef struct s_img
 {
 	void	*mlx_img;
@@ -34,7 +44,10 @@ typedef struct s_mlx
 	void	*wall;
 	void	*coins;
 	void	*exit;
-	void	*player;
+	void	*player_f;
+	void	*player_r;
+	void	*player_b;
+	void	*player_l;
 	char	**map;
 	int		width;
 	int		height;
@@ -63,6 +76,7 @@ int			ft_is_doable(t_mlx *mlx, int keycode);
 
 void		ft_destroy_mlx(t_mlx *mlx);
 void		ft_mlx_width_height_init(t_mlx *mlx);
+void	ft_find_position_player(t_mlx *mlx, int *x, int *y);
 void		ft_find_position_exit(t_mlx *mlx, int *x, int *y);
 void		ft_parcourt_map(t_mlx *mlx, int x, int y, void *img);
 
