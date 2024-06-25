@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:06:56 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/21 20:29:49 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/25 16:01:03 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include <stdio.h>
 
 # define IMAGE 64
-# define IMG_RIGHT "images/perso_right.xpm" 
-# define IMG_LEFT "images/perso_left.xpm" 
-# define IMG_BACK "images/perso_back.xpm" 
+# define IMG_RIGHT "images/perso_right.xpm"
+# define IMG_LEFT "images/perso_left.xpm"
+# define IMG_BACK "images/perso_back.xpm"
 # define IMG_FRONT "images/perso_front.xpm"
 # define IMG_FLOOR "images/back.xpm"
 # define IMG_WALL "images/bush1.xpm"
@@ -63,7 +63,7 @@ int			ft_check_close_by_wall2(char *buff);
 int			ft_check_close_by_wall(char *buff);
 int			ft_check_if_playable(char *buff);
 int			ft_put_pixel(t_mlx *mlx);
-int			ft_so_long(t_mlx *mlx, char **map);
+int			ft_so_long(t_mlx *mlx);
 int			ft_exit_escape(int keycode, t_mlx *mlx);
 int			ft_exit_cross(t_mlx *mlx);
 int			ft_put_backgroud(t_mlx *mlx);
@@ -76,9 +76,10 @@ int			ft_is_doable(t_mlx *mlx, int keycode);
 
 void		ft_destroy_mlx(t_mlx *mlx);
 void		ft_mlx_width_height_init(t_mlx *mlx);
-void	ft_find_position_player(t_mlx *mlx, int *x, int *y);
+void		ft_find_position_player(t_mlx *mlx, int *x, int *y);
 void		ft_find_position_exit(t_mlx *mlx, int *x, int *y);
 void		ft_parcourt_map(t_mlx *mlx, int x, int y, void *img);
+void		ft_initialize_mlx(t_mlx *mlx, char **map);
 
 char		**ft_parse_map(char *map);
 

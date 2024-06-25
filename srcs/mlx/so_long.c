@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:39:37 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/21 17:03:50 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/25 16:09:35 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,8 @@ void	ft_initialize_mlx(t_mlx *mlx, char **map)
 	ft_find_position_exit(mlx, &mlx->exit_x, &mlx->exit_y);
 }
 
-int	ft_so_long(t_mlx *mlx, char **map)
+int	ft_so_long(t_mlx *mlx)
 {
-	ft_initialize_mlx(mlx, map);
-	mlx->init = mlx_init();
-	if (!mlx->init)
-		return (perror("Error when init mlx\n"), 1);
 	ft_initialize_image(mlx);
 	mlx->window = mlx_new_window(mlx->init, mlx->width, mlx->height, "So_long");
 	if (!mlx->window)

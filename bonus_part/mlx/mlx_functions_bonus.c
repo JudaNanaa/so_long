@@ -6,12 +6,40 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 21:06:10 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/24 23:48:33 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/25 14:37:34 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long_bonus.h"
 #include <stdio.h>
+
+void	ft_destroy_mlx_2(t_mlx *mlx)
+{
+	if (mlx->enemy)
+		mlx_destroy_image(mlx->init, mlx->enemy);
+	if (mlx->coins)
+		mlx_destroy_image(mlx->init, mlx->coins);
+	if (mlx->exit)
+		mlx_destroy_image(mlx->init, mlx->exit);
+	if (mlx->enemy1)
+		mlx_destroy_image(mlx->init, mlx->enemy1);
+	if (mlx->enemy2)
+		mlx_destroy_image(mlx->init, mlx->enemy2);
+	if (mlx->enemy3)
+		mlx_destroy_image(mlx->init, mlx->enemy3);
+	if (mlx->enemy4)
+		mlx_destroy_image(mlx->init, mlx->enemy4);
+	if (mlx->enemy5)
+		mlx_destroy_image(mlx->init, mlx->enemy5);
+	if (mlx->enemy6)
+		mlx_destroy_image(mlx->init, mlx->enemy6);
+	if (mlx->enemy7)
+		mlx_destroy_image(mlx->init, mlx->enemy7);
+	if (mlx->enemy8)
+		mlx_destroy_image(mlx->init, mlx->enemy8);
+	if (mlx->enemy9)
+		mlx_destroy_image(mlx->init, mlx->enemy9);
+}
 
 void	ft_destroy_mlx(t_mlx *mlx)
 {
@@ -29,31 +57,15 @@ void	ft_destroy_mlx(t_mlx *mlx)
 		mlx_destroy_image(mlx->init, mlx->player_l);
 	if (mlx->player_b)
 		mlx_destroy_image(mlx->init, mlx->player_b);
-	if (mlx->coins)
-		mlx_destroy_image(mlx->init, mlx->coins);
-	if (mlx->exit)
-		mlx_destroy_image(mlx->init, mlx->exit);
+	if (mlx->enemy10)
+		mlx_destroy_image(mlx->init, mlx->enemy10);
+	if (mlx->enemy11)
+		mlx_destroy_image(mlx->init, mlx->enemy11);
+	ft_destroy_mlx_2(mlx);
 	mlx_destroy_display(mlx->init);
 	ft_free_split(mlx->map);
 	free(mlx->init);
 	exit(EXIT_SUCCESS);
-}
-
-void	ft_mlx_width_height_init(t_mlx *mlx)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (mlx->map[y])
-	{
-		x = 0;
-		while (mlx->map[y][x])
-			x++;
-		y++;
-	}
-	mlx->width = x * 64;
-	mlx->height = y * 64;
 }
 
 int	ft_nb_collectible(t_mlx *mlx)
@@ -88,6 +100,7 @@ int	ft_put_pixel(t_mlx *mlx)
 		return (-1);
 	if (ft_put_collectible(mlx) == -1)
 		return (-1);
+	ft_print_enemies(mlx);
 	return (0);
 }
 
@@ -103,8 +116,8 @@ void	ft_parcourt_map(t_mlx *mlx, int x, int y, void *img)
 		while (mlx->map[i][j])
 		{
 			if (mlx->map[i][j] == '1')
-				mlx_put_image_to_window(mlx->init, mlx->window, img, j * x,
-					i * y);
+				mlx_put_image_to_window(mlx->init, mlx->window, img,
+					j * x, i * y);
 			j++;
 		}
 		i++;

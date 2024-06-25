@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:06:24 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/24 23:48:59 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/25 16:17:39 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ft_find_position_player(t_mlx *mlx, int *x, int *y)
 		}
 		i++;
 	}
+	*x = 0;
+	*y = 0;
 }
 
 void	ft_find_position_exit(t_mlx *mlx, int *x, int *y)
@@ -67,6 +69,9 @@ int	ft_is_doable(t_mlx *mlx, int keycode)
 
 	x = 0;
 	y = 0;
+	ft_find_position_exit(mlx, &x, &y);
+	if (ft_nb_collectible(mlx) == 0 && y == 0 && x == 0)
+		return (0);
 	ft_find_position_player(mlx, &x, &y);
 	if (keycode == 'w' && mlx->map[y - 1][x] != '1')
 		return (mlx->map[y - 1][x] = 'B', mlx->map[y][x] = '0', 1);
@@ -79,6 +84,31 @@ int	ft_is_doable(t_mlx *mlx, int keycode)
 	return (0);
 }
 
+int	ft_check_size(char **map, t_mlx *mlx)
+{
+	int	x;
+	int	y;
+	int	i;
+	int	j;
+
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+			x++;
+		y++;
+	}
+	i = 0;
+	j = 0;
+	mlx_get_screen_size(mlx->init, &i, &j);
+	if (x * IMAGE > i)
+		return (ft_printf("Error\nMap too big in width\n"), 0);
+	if (y * IMAGE > j)
+		return (ft_printf("Error\nMap too big in height\n"), 0);
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
@@ -89,5 +119,15 @@ int	main(int argc, char **argv)
 	map = ft_parse_map(argv[1]);
 	if (!map)
 		return (1);
-	return (ft_so_long(&mlx, map));
+	mlx.map = map;
+	ft_initialize_mlx(&mlx);
+	mlx.init = mlx_init();
+	if (!mlx.init)
+		return (perror("Error when init mlx\n"), 1);
+	if (ft_check_size(map, &mlx) == 0)
+	{
+		ft_free_split(map);
+		return (mlx_destroy_display(mlx.init), free(mlx.init), 1);
+	}
+	return (ft_so_long(&mlx));
 }

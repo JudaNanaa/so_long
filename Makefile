@@ -6,7 +6,7 @@
 #    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 12:57:50 by madamou           #+#    #+#              #
-#    Updated: 2024/06/24 23:50:37 by madamou          ###   ########.fr        #
+#    Updated: 2024/06/25 15:24:58 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ OBJS = $(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
 
 PARSING_BONUS = $(addprefix parsing/, parse_map_bonus.c parse_map_utils_bonus.c parse_map_utils2_bonus.c) 
 
-MLX_BONUS = $(addprefix mlx/, so_long_bonus.c  mlx_functions_bonus.c print_image_bonus.c event_bonus.c)
+MLX_BONUS = $(addprefix mlx/, so_long_bonus.c  mlx_functions_bonus.c print_image_bonus.c \
+			event_bonus.c enemies_bonus.c enemies2_bonus.c final_animations_bonus.c)
 
 SRCS_BONUS = main_bonus.c  $(PARSING_BONUS) $(MLX_BONUS)
 
@@ -46,9 +47,9 @@ OBJS_BONUS = $(SRCS_BONUS:$(SRCS_BONUS_DIR)%.c=$(OBJS_BONUS_DIR)%.o)
 
 DIR_DUP = mkdir -p $(@D)
 
-NAME = so_long_bonus
+NAME = so_long
 
-BONUS = so_long
+BONUS = so_long_bonus
 
 LIBFT = libft.a
 
