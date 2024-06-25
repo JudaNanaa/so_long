@@ -6,7 +6,7 @@
 #    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 12:57:50 by madamou           #+#    #+#              #
-#    Updated: 2024/06/25 15:24:58 by madamou          ###   ########.fr        #
+#    Updated: 2024/06/25 18:43:35 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,8 @@ LIBFT = libft.a
 
 LIBMLX = libmlx_Linux.a
 
+GENERATOR = so_long_generator
+
 all : $(LIBMLX) $(LIBFT) $(NAME)
 
 $(LIBMLX) :
@@ -80,14 +82,23 @@ $(OBJS_BONUS_DIR)%.o : $(SRCS_BONUS_DIR)%.c
 	$(DIR_DUP)
 	$(CC) $(C_FLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
+$(GENERATOR) :
+	make -C ./bonus_part/so_long_map_generator
+
+random : $(GENERATOR) bonus
+	./bonus_part/so_long_map_generator/so_long_generator 60x32 12 random.ber
+	./so_long_bonus random.ber
+	
 clean : 
-	make clean -C ./libft 
+	make clean -C ./libft
+	make clean -C ./bonus_part/so_long_map_generator
 	make clean -C ./minilibx-linux
-	rm -rf $(OBJS_DIR) $(OBJS_BONUS_DIR)
+	rm -rf $(OBJS_DIR) $(OBJS_BONUS_DIR) random.ber
 
 fclean : clean
 	make fclean -C ./libft 
-	rm -rf $(NAME) $(BONUS)
+	make fclean -C ./bonus_part/so_long_map_generator
+	rm -rf $(NAME) $(BONUS) $(GENERATOR)
 
 re : fclean all
 
