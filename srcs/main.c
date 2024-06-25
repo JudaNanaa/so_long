@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:06:24 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/25 16:07:42 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/25 16:54:42 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	main(int argc, char **argv)
 	ft_initialize_mlx(&mlx, map);
 	mlx.init = mlx_init();
 	if (!mlx.init)
-		return (perror("Error when init mlx\n"), 1);
+		return (ft_free_split(map), perror("Error when init mlx\n"), 1);
 	if (ft_check_size(map, &mlx) == 0)
 	{
 		ft_free_split(map);

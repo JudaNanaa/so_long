@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:09:03 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/24 23:48:46 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/25 16:58:01 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ int	ft_check_map(char *buff)
 	return (cpt);
 }
 
+int	ft_check_not_split(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str && str[i])
+	{
+		if (str[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 char	**ft_open_map(char *map)
 {
 	int		fd;
@@ -63,6 +77,8 @@ char	**ft_open_map(char *map)
 		return (free(buff), perror(""), NULL);
 	if (!buff)
 		return (NULL);
+	if (ft_check_not_split(ft_strstr(buff, "\n\n")) == 0)
+		return (free(buff), ft_printf("Error\nMap is split\n"), NULL);
 	if (ft_check_map(buff) < 0)
 		return (free(buff), NULL);
 	return (split = ft_split(buff, "\n"), free(buff), split);

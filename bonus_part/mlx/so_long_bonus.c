@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:39:37 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/25 16:14:08 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/25 16:56:16 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,6 @@ int	ft_so_long(t_mlx *mlx)
 {
 	ft_put_enemies(mlx);
 	mlx->nb_enemies = ft_nb_enemies(mlx);
-	mlx->init = mlx_init();
-	if (!mlx->init)
-		return (perror("Error when init mlx\n"), 1);
 	ft_initialize_image(mlx);
 	mlx->window = mlx_new_window(mlx->init, mlx->width, mlx->height, "So_long");
 	if (!mlx->window)
