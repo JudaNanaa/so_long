@@ -86,7 +86,7 @@ $(GENERATOR) :
 	make -C ./bonus_part/so_long_map_generator
 
 random : $(GENERATOR) bonus
-	./bonus_part/so_long_map_generator/so_long_generator 60x32 12 random.ber
+	./bonus_part/so_long_map_generator/so_long_generator 60x32 30 random.ber
 	./so_long_bonus random.ber
 	
 clean : 

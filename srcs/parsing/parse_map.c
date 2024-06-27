@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:09:03 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/25 16:58:37 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/27 13:22:31 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	ft_check_map(char *buff)
 	cpt += ft_check_if_collectible(buff);
 	cpt += ft_check_if_rectangle(buff);
 	cpt += ft_check_close_by_wall(buff);
-	cpt += ft_check_if_playable(buff);
+	if (cpt == 0)
+		cpt += ft_check_if_playable(buff);
 	return (cpt);
 }
 
