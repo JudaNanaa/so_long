@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 21:06:10 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/21 20:39:01 by madamou          ###   ########.fr       */
+/*   Updated: 2024/08/28 21:13:49 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_mlx_width_height_init(t_mlx *mlx)
 	int	y;
 
 	y = 0;
+	x = 0;
 	while (mlx->map[y])
 	{
 		x = 0;

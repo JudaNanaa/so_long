@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_map_utils2.c                               :+:      :+:    :+:   */
+/*   parse_map_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:14:00 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/20 11:14:21 by madamou          ###   ########.fr       */
+/*   Updated: 2024/08/28 21:13:26 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,8 @@ int	ft_check_if_all_good(char **map)
 
 int	ft_check_if_playable(char *buff)
 {
-	int		i;
-	int		j;
 	char	**map;
 
-	i = 0;
-	j = 0;
 	map = ft_split(buff, "\n");
 	if (!map)
 		return (-1);

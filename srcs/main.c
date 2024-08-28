@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:06:24 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/25 16:54:42 by madamou          ###   ########.fr       */
+/*   Updated: 2024/08/28 21:13:03 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	ft_check_size(char **map, t_mlx *mlx)
 	int	j;
 
 	y = 0;
+	x = 0;
 	while (map[y])
 	{
 		x = 0;
